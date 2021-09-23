@@ -62,37 +62,37 @@ class MoneyTransferTest {
         assertEquals(expected2, actual2);
     }
 
-//    @Test
-//    void shouldNotTransferMoreThanLimit() {
-//        var loginPage = new LoginPageV2();
-//        var authInfo = DataHelper.getAuthInfo();
-//        var verificationPage = loginPage.validLogin(authInfo);
-//        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-//        var dashboardPage = verificationPage.validVerify(verificationCode);
-//        dashboardPage.checkHeadingYourCards();
-//        var initialBalanceFromCard = dashboardPage.getSecondCardBalance();
-//        var transferPage = dashboardPage.validChoosePay1();
-//        transferPage.checkHeadingPaymentCards();
-//        var amount = 1 + initialBalanceFromCard;
-//        transferPage.setPayCardNumber(DataHelper.getSecondCard(), amount);
-//        transferPage.validPayExtendAmount();
-//    }
+    @Test
+    void shouldNotTransferMoreThanLimit() {
+        var loginPage = new LoginPageV2();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingYourCards();
+        var initialBalanceFromCard = dashboardPage.getSecondCardBalance();
+        var transferPage = dashboardPage.validChoosePay1();
+        transferPage.checkHeadingPaymentCards();
+        var amount = 1 + initialBalanceFromCard;
+        transferPage.setPayCardNumber(DataHelper.getSecondCard(), amount);
+        transferPage.validPayExtendAmount();
+    }
 
-//    @Test
-//    void shouldNotTransferMoreThanLimit2() {
-//        var loginPage = new LoginPageV2();
-//        var authInfo = DataHelper.getAuthInfo();
-//        var verificationPage = loginPage.validLogin(authInfo);
-//        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
-//        var dashboardPage = verificationPage.validVerify(verificationCode);
-//        dashboardPage.checkHeadingYourCards();
-//        var initialBalanceFromCard = dashboardPage.getFirstCardBalance();
-//        var transferPage = dashboardPage.validChoosePay2();
-//        transferPage.checkHeadingPaymentCards();
-//        var amount = 1 + initialBalanceFromCard;
-//        transferPage.setPayCardNumber(DataHelper.getFirstCard(), amount);
-//        transferPage.validPayExtendAmount();
-//    }
+    @Test
+    void shouldNotTransferMoreThanLimit2() {
+        var loginPage = new LoginPageV2();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingYourCards();
+        var initialBalanceFromCard = dashboardPage.getFirstCardBalance();
+        var transferPage = dashboardPage.validChoosePay2();
+        transferPage.checkHeadingPaymentCards();
+        var amount = 1 + initialBalanceFromCard;
+        transferPage.setPayCardNumber(DataHelper.getFirstCard(), amount);
+        transferPage.validPayExtendAmount();
+    }
 
     @Test
     void shouldNotTransferFromInvalidCard() {
@@ -122,5 +122,35 @@ class MoneyTransferTest {
         var amount = 900;
         transferPage.setPayCardNumber(DataHelper.getInvalidCard(), amount);
         transferPage.invalidPayCard();
+    }
+
+    @Test
+    void shouldNotTransferFomItSelf() {
+        var loginPage = new LoginPageV2();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingYourCards();
+        var transferPage = dashboardPage.validChoosePay1();
+        transferPage.checkHeadingPaymentCards();
+        var amount = 2000;
+        transferPage.setPayCardNumber(DataHelper.getFirstCard(), amount);
+        transferPage.validPaySameCard();
+    }
+
+    @Test
+    void shouldNotTransferFomItSelf2() {
+        var loginPage = new LoginPageV2();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var dashboardPage = verificationPage.validVerify(verificationCode);
+        dashboardPage.checkHeadingYourCards();
+        var transferPage = dashboardPage.validChoosePay2();
+        transferPage.checkHeadingPaymentCards();
+        var amount = 2000;
+        transferPage.setPayCardNumber(DataHelper.getSecondCard(), amount);
+        transferPage.validPaySameCard();
     }
 }

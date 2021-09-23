@@ -1,1 +1,1 @@
-# OrderingCard [![Build status](https://ci.appveyor.com/api/projects/status/3slh70ln95blptnx?svg=true)](https://ci.appveyor.com/project/Tanya-ui-hub/orderingcard)
+# Page Objects [![Build status](https://ci.appveyor.com/api/projects/status/13nr55t77jutxa76?svg=true)](https://ci.appveyor.com/project/Tanya-ui-hub/pageobjects)
